@@ -1,0 +1,5 @@
+micronaut:
+  application:
+    name: deliverymomentdataService
+  config-client:
+    enabled: true

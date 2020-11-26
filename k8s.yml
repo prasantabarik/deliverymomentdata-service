@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "deliverymomentdata-service"
+spec:
+  selector:
+    matchLabels:
+      app: "deliverymomentdata-service"
+  template:
+    metadata:
+      labels:
+        app: "deliverymomentdata-service"
+    spec:
+      containers:
+        - name: "deliverymomentdata-service"
+          image: "gcr.io/deliverymomentdata-service/jib-image"
+          ports:
+            - name: http
+              containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /health/readiness
+              port: 8080
+            initialDelaySeconds: 5
+            timeoutSeconds: 3
+          livenessProbe:
+            httpGet:
+              path: /health/liveness
+              port: 8080
+            initialDelaySeconds: 5
+            timeoutSeconds: 3
+            failureThreshold: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: "deliverymomentdata-service"
+spec:
+  selector:
+    app: "deliverymomentdata-service"
+  type: LoadBalancer
+  ports:
+    - protocol: "TCP"
+      port: 8080
