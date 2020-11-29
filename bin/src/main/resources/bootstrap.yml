@@ -2,4 +2,4 @@ micronaut:
   application:
     name: deliverymomentdataService
   config-client:
-    enabled: false
+    enabled: true

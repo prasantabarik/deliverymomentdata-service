@@ -1,11 +1,6 @@
 plugins {
-	id("groovy")
     id("io.micronaut.application") version "1.2.0"
     id("com.google.cloud.tools.jib") version "2.6.0"
-	id("com.github.johnrengelman.shadow") version "6.1.0"
-	id "org.sonarqube" version "2.7"
-	id "java"
-	id "application"
 }
 
 version = "0.1"
@@ -27,26 +22,7 @@ micronaut {
 
 dependencies {
     annotationProcessor("io.micronaut.openapi:micronaut-openapi")
-	annotationProcessor "io.micronaut:micronaut-inject-java"
-	annotationProcessor platform("io.micronaut:micronaut-bom:$micronautVersion")
-	annotationProcessor "io.micronaut:micronaut-validation"
-	
-    implementation platform("io.micronaut:micronaut-bom:$micronautVersion")
-	implementation "io.swagger.core.v3:swagger-annotations"
     compileOnly("org.graalvm.nativeimage:svm")
-	
-	compile group: 'commons-lang', name: 'commons-lang', version: '2.6'
-	compile group: 'commons-io', name: 'commons-io', version: '2.6'
-	compile group: 'javax.json', name: 'javax.json-api', version: '1.1.4'
-	compile group: 'org.apache.johnzon', name: 'johnzon-core', version: '1.2.6'
-	implementation "net.logstash.logback:logstash-logback-encoder:5.0"
-	compile group: 'ch.qos.logback', name: 'logback-access', version: '1.2.3'
-	runtimeOnly "ch.qos.logback:logback-classic:1.2.3"
-	
-	implementation "org.mapstruct:mapstruct:${mapstructVersion}"
-	annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
-	
-	
     implementation("io.micronaut:micronaut-validation")
     implementation("io.micronaut:micronaut-runtime")
     implementation("io.micronaut:micronaut-http-client")
@@ -80,14 +56,5 @@ tasks {
             image = "gcr.io/myapp/jib-image"
         }
     }
-}
-
-tasks.withType(JavaCompile){
-	options.encoding = "UTF-8"
-	options.compilerArgs = [
-			'-Amapstruct.suppressGeneratorTimestamp=true'
-	]
-	options.fork = true
-	options.forkOptions.jvmArgs << '-Dmicronaut.openapi.views.spec=rapidoc.enabled=true,swagger-ui.enabled=true,swagger-ui.theme=flattop'
 }
 

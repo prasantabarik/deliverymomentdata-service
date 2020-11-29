@@ -5,4 +5,33 @@ tracing:
       url: http://localhost:9411
     sampler:
       probability: 0.1
-mongodb.uri: mongodb://${MONGO_HOST:localhost}:${MONGO_PORT:27017}
+      
+micronaut:
+  router:
+        static-resources:
+            swagger: {paths: 'classpath:META-INF/swagger', mapping: '/swagger/**'}
+            swagger-ui: {paths: 'classpath:META-INF/swagger/views/swagger-ui', mapping: '/swagger-ui/**'}  
+  server:
+    port: 8081
+mongodb:
+  uri: mongodb://kotlin-dev-evl-cosmos-mongo-db:XkS4vgMCI3dglHVlg3MDhVNQsk1DMYJ5AK7ctA9B7oQp3FSXJfo4ETdmbJ3cAQNcvabkRjfNwpJPcVYocn9WlQ==@kotlin-dev-evl-cosmos-mongo-db.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@kotlin-dev-evl-cosmos-mongo-db
+
+app:
+  mongodb:
+    db:
+      name: deliverymoment-evl-db
+      collection:
+        deliveryMoment: delivery-moment​
+        sequences: counters
+
+endpoints:
+  metrics:
+    enabled: true
+    sensitive: false
+  health:
+    enabled: true
+    details-visible: ANONYMOUS
+  env:
+    enabled: true
+    sensitive: false
+    
