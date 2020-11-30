@@ -1,0 +1,19 @@
+name: deliverymomentdata-service
+namespace: ""
+cdPipelineName: ""
+cdPipelineStageName: ""
+dnsWildcard: 59ae6b648ca3437aae3a.westeurope.aksapp.io
+framework: java11
+
+database:
+  required: false
+
+
+ingress:
+  required: true
+  site: deliverymomentdata-service
+  path: /deliveryMoment
+
+image:
+  name: deliverymomentdata-service
+  version: latest
