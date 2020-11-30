@@ -14,7 +14,7 @@ micronaut:
   server:
     port: 8081
 mongodb:
-  uri: mongodb://kotlin-dev-evl-cosmos-mongo-db:XkS4vgMCI3dglHVlg3MDhVNQsk1DMYJ5AK7ctA9B7oQp3FSXJfo4ETdmbJ3cAQNcvabkRjfNwpJPcVYocn9WlQ==@kotlin-dev-evl-cosmos-mongo-db.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@kotlin-dev-evl-cosmos-mongo-db
+  uri: set_the_mongoDB_URL
 
 app:
   mongodb:
